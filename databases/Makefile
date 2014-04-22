@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.451 2014/04/12 12:10:34 adam Exp $
+# $NetBSD: Makefile,v 1.454 2014/04/19 16:04:37 imil Exp $
 
 COMMENT=	Databases
 
@@ -23,6 +23,7 @@ SUBDIR+=	dbfsak
 SUBDIR+=	dbh
 SUBDIR+=	deforaos-libdatabase
 SUBDIR+=	edb
+SUBDIR+=	elasticsearch
 SUBDIR+=	freetds
 SUBDIR+=	gdbm
 SUBDIR+=	gdbm_compat
@@ -317,6 +318,7 @@ SUBDIR+=	postgresql93-server
 SUBDIR+=	postgresql93-upgrade
 SUBDIR+=	pxtools
 SUBDIR+=	py-PgSQL
+SUBDIR+=	py-apsw
 SUBDIR+=	py-bdb-xml
 SUBDIR+=	py-bsddb3
 SUBDIR+=	py-cassa
@@ -325,6 +327,7 @@ SUBDIR+=	py-ckanclient
 SUBDIR+=	py-cx_Oracle
 SUBDIR+=	py-datapkg
 SUBDIR+=	py-elixir
+SUBDIR+=	py-elasticsearch
 SUBDIR+=	py-gdbm
 SUBDIR+=	py-ldap
 SUBDIR+=	py-metakit
