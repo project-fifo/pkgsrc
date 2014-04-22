@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.6 2014/04/09 07:27:19 obache Exp $
+# $NetBSD: Makefile,v 1.8 2014/04/20 02:27:53 ryoon Exp $
 
 PKGNAME=	qt5-qttranslations-${QTVERSION}
-PKGREVISION=	5
+PKGREVISION=	7
 COMMENT=	Qt5 translations
 
 .include "../../x11/qt5-qtbase/Makefile.common"
