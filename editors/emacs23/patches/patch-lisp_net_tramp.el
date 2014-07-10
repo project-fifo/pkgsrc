@@ -1,4 +1,4 @@
-$NetBSD: patch-lisp_net_tramp.el,v 1.1 2014/07/09 03:18:44 taca Exp $
+$NetBSD: patch-lisp_net_tramp.el,v 1.2 2014/07/10 02:25:10 taca Exp $
 
 Fix for CVE-2014-3424.
 
@@ -37,7 +37,7 @@ Fix for CVE-2014-3424.
 +Perl or Shell implementation for this functionality.  This
 +program will be transferred to the remote host, and it is
 +available as shell function with the same name.  A \"%t\" format
-+specifier in the variable value denotes a temporary file.
++specifier in the variable value denotes a temporary file.")
  
  (defun tramp-find-inline-encoding (vec)
    "Find an inline transfer encoding that works.
