@@ -31,23 +31,25 @@ for solaris2 http://gcc.gnu.org/bugzilla/show_bug.cgi?id=59788
        # don't eliminate duplications in $postdeps and $predeps
        opt_duplicate_compiler_generated_deps=:
        ;;
-@@ -5847,13 +5850,14 @@ func_mode_link ()
-       # -m*, -t[45]*, -txscale* architecture-specific flags for GCC
-       # -F/path              path to uninstalled frameworks, gcc on darwin
-       # -p, -pg, --coverage, -fprofile-*  profiling flags for GCC
-+      # -fstack-protector*   stack protector flags for GCC
-       # @file                GCC response files
-       # -tp=*                Portland pgcc target processor selection
-       # --sysroot=*          for sysroot support
-       # -O*, -flto*, -fwhopr*, -fuse-linker-plugin GCC link-time optimization
-       -64|-mips[0-9]|-r[0-9][0-9]*|-xarch=*|-xtarget=*|+DA*|+DD*|-q*|-m*| \
-       -t[45]*|-txscale*|-p|-pg|--coverage|-fprofile-*|-F*|@*|-tp=*|--sysroot=*| \
--      -O*|-flto*|-fwhopr*|-fuse-linker-plugin)
-+      -O*|-flto*|-fwhopr*|-fuse-linker-plugin|-fstack-protector*)
-         func_quote_for_eval "$arg"
- 	arg="$func_quote_for_eval_result"
-         func_append compile_command " $arg"
-@@ -7391,6 +7395,7 @@ func_mode_link ()
+@@ -5656,7 +5659,7 @@ func_mode_link ()
+ 	;;
+ 
+       -mt|-mthreads|-kthread|-Kthread|-pthread|-pthreads|--thread-safe \
+-      |-threads|-fopenmp|-openmp|-mp|-xopenmp|-omp|-qsmp=*)
++      |-threads|-fopenmp|-fstack-protector*|-openmp|-mp|-xopenmp|-omp|-qsmp=*)
+ 	func_append compiler_flags " $arg"
+ 	func_append compile_command " $arg"
+ 	func_append finalize_command " $arg"
+@@ -6161,7 +6164,7 @@ func_mode_link ()
+ 	found=no
+ 	case $deplib in
+ 	-mt|-mthreads|-kthread|-Kthread|-pthread|-pthreads|--thread-safe \
+-        |-threads|-fopenmp|-openmp|-mp|-xopenmp|-omp|-qsmp=*)
++        |-threads|-fopenmp|-fstack-protector*| -openmp|-mp|-xopenmp|-omp|-qsmp=*)
+ 	  if test "$linkmode,$pass" = "prog,link"; then
+ 	    compile_deplibs="$deplib $compile_deplibs"
+ 	    finalize_deplibs="$deplib $finalize_deplibs"
+@@ -7391,6 +7394,7 @@ func_mode_link ()
  	# Calculate the version variables.
  	major=
  	versuffix=
@@ -55,7 +57,7 @@ for solaris2 http://gcc.gnu.org/bugzilla/show_bug.cgi?id=59788
  	verstring=
  	case $version_type in
  	none) ;;
-@@ -7451,6 +7456,7 @@ func_mode_link ()
+@@ -7451,6 +7455,7 @@ func_mode_link ()
  	  func_arith $current - $age
  	  major=.$func_arith_result
  	  versuffix="$major.$age.$revision"
@@ -63,7 +65,7 @@ for solaris2 http://gcc.gnu.org/bugzilla/show_bug.cgi?id=59788
  	  ;;
  
  	osf)
-@@ -7511,8 +7517,10 @@ func_mode_link ()
+@@ -7511,8 +7516,10 @@ func_mode_link ()
  	  esac
  	  if test "$need_version" = no; then
  	    versuffix=
@@ -74,7 +76,7 @@ for solaris2 http://gcc.gnu.org/bugzilla/show_bug.cgi?id=59788
  	  fi
  	fi
  
-@@ -7520,6 +7528,7 @@ func_mode_link ()
+@@ -7520,6 +7527,7 @@ func_mode_link ()
  	if test "$avoid_version" = yes && test "$need_version" = no; then
  	  major=
  	  versuffix=
@@ -82,7 +84,7 @@ for solaris2 http://gcc.gnu.org/bugzilla/show_bug.cgi?id=59788
  	  verstring=""
  	fi
  
-@@ -7630,7 +7639,7 @@ func_mode_link ()
+@@ -7630,7 +7638,7 @@ func_mode_link ()
  	  *-*-netbsd*)
  	    # Don't link with libc until the a.out ld.so is fixed.
  	    ;;
@@ -91,7 +93,7 @@ for solaris2 http://gcc.gnu.org/bugzilla/show_bug.cgi?id=59788
  	    # Do not include libc due to us having libc/libc_r.
  	    ;;
  	  *-*-sco3.2v5* | *-*-sco5v6*)
-@@ -7653,12 +7662,14 @@ func_mode_link ()
+@@ -7653,12 +7661,14 @@ func_mode_link ()
  	libname_save=$libname
  	release_save=$release
  	versuffix_save=$versuffix
@@ -106,7 +108,7 @@ for solaris2 http://gcc.gnu.org/bugzilla/show_bug.cgi?id=59788
  	major=""
  	newdeplibs=
  	droppeddeps=no
-@@ -7935,6 +7946,7 @@ EOF
+@@ -7935,6 +7945,7 @@ EOF
  	  ;;
  	esac
  	versuffix=$versuffix_save
