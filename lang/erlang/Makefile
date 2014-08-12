@@ -1,7 +1,7 @@
 # $NetBSD: Makefile,v 1.61 2014/03/11 14:34:37 jperkin Exp $
 
 DISTNAME=		otp_src_${DIST_VERSION_MAJOR}${DIST_VERSION_MINOR:D-${DIST_VERSION_MINOR}}
-PKGREVISION=		2
+#PKGREVISION=		3
 PKGNAME=		erlang-${ERLANG_VERSION}
 CATEGORIES=		lang
 MASTER_SITES=		http://www.erlang.org/download/
@@ -48,7 +48,7 @@ MAKE_ENV+=		DESTDIR=${DESTDIR}
 
 REPLACE_INTERPRETER+=	escript
 REPLACE.escript.old=	.*escript
-REPLACE.escript.new=	${LOCALBASE}/bin/escript
+REPLACE.escript.new=	${WRKSRC}/bin/escript
 REPLACE_FILES.escript=	\
 	lib/reltool/examples/display_args \
 	lib/reltool/examples/mnesia_core_dump_viewer \
